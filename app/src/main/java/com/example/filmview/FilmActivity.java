@@ -1,26 +1,15 @@
 package com.example.filmview;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-
-import static java.net.URI.create;
-
 public class FilmActivity extends Activity {
-    private static final String TAG_FID = "id";
+    //private static final String TAG_FID = "id";
     private static final String TAG_YEAR = "year";
     private static final String TAG_RATING = "rating";
     private static final String TAG_RUNAME = "localized_name";
@@ -45,12 +34,12 @@ public class FilmActivity extends Activity {
         String rating = intentDetails.getStringExtra(TAG_RATING);
         String description = intentDetails.getStringExtra(TAG_DESCRIPTION);
 
-        imageView = (ImageView) findViewById(R.id.filmImage);
-        textRuName = (TextView) findViewById(R.id.filmRuName);
-        textEnName = (TextView) findViewById(R.id.filmEnName);
-        textYear = (TextView) findViewById(R.id.filmYear);
-        textRating = (TextView) findViewById(R.id.filmRating);
-        textDescription = (TextView) findViewById(R.id.filmDescription);
+        imageView = findViewById(R.id.filmImage);
+        textRuName = findViewById(R.id.filmRuName);
+        textEnName = findViewById(R.id.filmEnName);
+        textYear = findViewById(R.id.filmYear);
+        textRating = findViewById(R.id.filmRating);
+        textDescription = findViewById(R.id.filmDescription);
 
         Picasso.with(FilmActivity.this).load(imageUrl).into(imageView);
         //imageView.setImageURI(URI.create(imageUrl));

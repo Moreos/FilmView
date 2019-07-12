@@ -10,9 +10,8 @@ public class Film {
     private String enName;
     private String imageUrl;
     private String description;
-    private String arrayPosition;
 
-    public static final Comparator<Film> yearRatinCompare =
+    static final Comparator<Film> yearRatinCompare =
             new Comparator<Film>() {
                 @Override
                 public int compare(Film o1, Film o2) {
@@ -26,16 +25,7 @@ public class Film {
                 }
             };
 
-    public static final Comparator<Film> positionCompare =
-            new Comparator<Film>() {
-                @Override
-                public int compare(Film o1, Film o2) {
-                    // возвращаем результат сравнения имен
-                    return o1.getArrayPosition().compareTo(o2.getArrayPosition());
-                }
-            };
-
-    public Film(String fid, String year, String rank, String ruName, String enName, String imageUrl, String description, String arrayPosition) {
+    Film(String fid, String year, String rank, String ruName, String enName, String imageUrl, String description) {
         this.fid = fid;
         this.year = year;
         this.rank = rank;
@@ -43,7 +33,6 @@ public class Film {
         this.enName = enName;
         this.imageUrl = imageUrl;
         this.description = description;
-        this.arrayPosition = arrayPosition;
     }
 
     public String getFid() {
@@ -100,13 +89,5 @@ public class Film {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getArrayPosition() {
-        return arrayPosition;
-    }
-
-    public void setArrayPosition(String arrayPosition) {
-        this.arrayPosition = arrayPosition;
     }
 }

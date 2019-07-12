@@ -4,11 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="8dp"
-    android:padding="8dp"
-    android:onClick="TestListener">
-
-
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp">
+    
 
         <LinearLayout
             android:orientation="vertical"
@@ -30,8 +28,6 @@
                 android:layout_weight="5"
                 android:textSize="16dp"/>
 
-
-
         </LinearLayout>
 
     <TextView
@@ -40,15 +36,4 @@
         android:layout_height="match_parent"
         android:layout_weight="4"
         android:textSize="24dp"/>
-    <TextView
-        android:id="@+id/year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:textSize="16dp"/>
-    <TextView
-        android:id="@+id/arrayPosition"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </LinearLayout>
