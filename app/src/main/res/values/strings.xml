@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Film View</string>
+    <string name="titleMain">Фильмы</string>
+    <string name="nameFilm" />
 </resources>

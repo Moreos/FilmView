@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -92,8 +93,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< Updated upstream
         setContentView(R.layout.test_layout);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+=======
+        setContentView(R.layout.activity_main);
+
+        /*
+        Не сделанны пункты: 4, 5?, 6?, 13
+        GSON Petrofit
+        FCM - потом
+         */
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.abs_layout);
+        actionBar.setTitle(R.string.titleMain);
+
+        activityWeakReference = new WeakReference<>(MainActivity.this);
+        mSwipeRefreshLayout = findViewById(R.id.swipeContainer);
+>>>>>>> Stashed changes
         mSwipeRefreshLayout.setOnRefreshListener(this);
         new showAllFilms().execute();
     }

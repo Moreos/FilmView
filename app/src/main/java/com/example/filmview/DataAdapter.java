@@ -49,8 +49,12 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     }
 
     @Override
+<<<<<<< Updated upstream
     public void onBindViewHolder(DataAdapter.ViewHolder holder, int position) {
         final FilmItem film = filmItemsYears.get(position);
+=======
+    public void onBindViewHolder(final DataAdapter.ViewHolder holder, final int position) {
+>>>>>>> Stashed changes
         int type = getItemViewType(position);
         switch (type) {
             case TYPE_ITEM1:
