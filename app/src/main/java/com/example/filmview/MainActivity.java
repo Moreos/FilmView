@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -48,8 +47,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     List<Object> filmsItemsYears = new ArrayList<>();
 
     private WeakReference<MainActivity> activityWeakReference;
-
-    private static final String TAGS = "ADAPTER";
 
     public static String doGet(String url)
             throws Exception {
@@ -149,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                             for (int i = 0; i < filmsArray.length(); i++) {
                                 JSONObject filmItem = filmsArray.getJSONObject(i);
                                 /*
+                                Не рабтоает - не трогать
                                 String filmId = filmItem.get(TAG_FID).toString();
                                 String filmYear, filmRating, filmRuName, filmEnName, filmImageURL, filmDescription;
                                 if (filmItem.get(TAG_YEAR) == null) filmYear = "0";

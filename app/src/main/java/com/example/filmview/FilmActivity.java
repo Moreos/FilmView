@@ -62,18 +62,6 @@ public class FilmActivity extends AppCompatActivity {
             textYear.setText(year);
             textRating.setText(rating);
             textDescription.setText(description);
-            Picasso.with(FilmActivity.this).load(imageUrl).into(imageView);
-
-        /*
-         Если постера нет или ссылка на него не рабочая, не работает
-        if (imageUrl.equals("") || imageUrl == null || imageUrl.equals("Отсутствует")) {
-            Picasso.with(FilmActivity.this).load(R.drawable.notitleimage).into(imageView);
-            //imageView.setVisibility(View.GONE);
-        } else {
-            //imageView.setVisibility(View.VISIBLE);
-            Picasso.with(FilmActivity.this).load(imageUrl).into(imageView);
-        }
-        Toast.makeText(getApplicationContext(), imageUrl + "", Toast.LENGTH_SHORT).show();*/
         }
 
         @Override
