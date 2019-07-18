@@ -25,6 +25,7 @@
                     android:id="@+id/filmImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/lightblue"
                     android:layout_marginRight="8dp"
                     android:layout_weight="15"
                     android:layout_marginEnd="8dp" />
@@ -38,25 +39,46 @@
                         android:id="@+id/filmEnName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/filmYear"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:id="@+id/filmRating"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/year"
+                                android:textColor="@color/black"
+                                android:textSize="24sp" />
+                            <TextView
+                                android:id="@+id/filmYear"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="24sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rating"
+                                android:textColor="@color/black"
+                                android:textSize="24sp" />
+                            <TextView
+                                android:id="@+id/filmRating"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textSize="24sp" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -67,6 +89,7 @@
                 android:id="@+id/filmDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="8dp"
                 android:textSize="20sp" />
 

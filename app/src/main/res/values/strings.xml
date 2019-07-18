@@ -2,4 +2,6 @@
     <string name="app_name">Film View</string>
     <string name="titleMain">Фильмы</string>
     <string name="nameFilm" />
+    <string name="rating">Рейтинг:</string>
+    <string name="year">Год:</string>
 </resources>
