@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "765688048522",
+    "firebase_url": "https://filmview-73c1a.firebaseio.com",
+    "project_id": "filmview-73c1a",
+    "storage_bucket": "filmview-73c1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765688048522:android:01e35fc131a89a34",
+        "android_client_info": {
+          "package_name": "com.example.filmview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765688048522-qcirilcjiffvde0u071ndcfocbnvidrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0CbnXCvvm3vT4_OBbG7qNvgxV5st7v4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765688048522-qcirilcjiffvde0u071ndcfocbnvidrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
