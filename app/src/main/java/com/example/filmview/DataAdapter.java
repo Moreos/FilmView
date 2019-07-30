@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,18 +16,19 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
 
     private final int TYPE_ITEM_FILM = 1;
     private final int TYPE_ITEM_YEAR = 2;
+
     private LayoutInflater inflater;
-    private Film film;
+    private FilmItemGson film;
     private String year;
     private List<Object> filmItemsYears;
 
     @Override
     public int getItemViewType(int position) {
-        if (filmItemsYears.get(position) instanceof Film) {
-            film = (Film) filmItemsYears.get(position);
+        if (filmItemsYears.get(position) instanceof FilmItemGson) {
+            film = (FilmItemGson) filmItemsYears.get(position);
             return TYPE_ITEM_FILM;
         } else {
-            year = (String) filmItemsYears.get(position);
+            year = String.valueOf(filmItemsYears.get(position));
             return  TYPE_ITEM_YEAR;
         }
     }
@@ -45,7 +45,7 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
         View view;
         switch (viewType) {
             case TYPE_ITEM_FILM:
-                view = inflater.inflate(R.layout.list_item, parent, false);
+                view = inflater.inflate(R.layout.list_item_card_new, parent, false);
                 return new ViewHolder(view);
             case TYPE_ITEM_YEAR:
                 view = inflater.inflate(R.layout.year_item, parent, false);
@@ -54,21 +54,19 @@ class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
         return null;
     }
 
-
-
     @Override
     public void onBindViewHolder(@NonNull final DataAdapter.ViewHolder holder, final int position) {
         int type = getItemViewType(position);
         switch (type) {
 
             case TYPE_ITEM_FILM:
-                holder.ruNameView.setText(film.getRuName());
-                holder.enNmeView.setText(film.getEnName());
-                holder.ratingView.setText(film.getRank());
+                holder.ruNameView.setText(film.getLocalized_name());
+                holder.enNmeView.setText(film.getName());
+                holder.ratingView.setText(String.valueOf(film.getRating()));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mCallback.onClick((Film) filmItemsYears.get(position));
+                        mCallback.onClick((FilmItemGson) filmItemsYears.get(position));
                     }
                 });
                 break;

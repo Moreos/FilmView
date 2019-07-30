@@ -1,34 +1,48 @@
 package com.example.filmview;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Comparator;
 
 public class FilmItemGson {
 
 
     @SerializedName("id")
-    @Expose
-    private String id;
+    private int id;
     @SerializedName("localized_name")
-    @Expose
     private String localized_name;
     @SerializedName("name")
-    @Expose
     private String name;
     @SerializedName("year")
-    @Expose
-    private String year;
+    private int year;
     @SerializedName("rating")
-    @Expose
-    private String rating;
+    private double rating;
     @SerializedName("image_url")
-    @Expose
     private String image_url;
     @SerializedName("description")
-    @Expose
     private String description;
 
-    public FilmItemGson(String id, String localized_name, String name, String year, String rating, String image_url, String description) {
+    static final Comparator<FilmItemGson> yearRatingCompare =
+            new Comparator<FilmItemGson>() {
+                @Override
+                public int compare(FilmItemGson o1, FilmItemGson o2) {
+                    // сравним фамилии
+
+                    String o1sy = String.valueOf(o1.getYear());
+                    String o2sy = String.valueOf(o2.getYear());
+                    String o1sr = String.valueOf(o1.getRating());
+                    String o2sr = String.valueOf(o2.getRating());
+
+                    int result = o1sy.compareTo(o2sy);
+                    // если фамилии не одинаковы - вернем результат сравнения
+                    if (result != 0)
+                        return result;
+                    // для одинаковых фамилий, результат сравнения - сравнение имен
+                    return o2sr.compareTo(o1sr);
+                }
+            };
+
+    public FilmItemGson(int id, String localized_name, String name, int year, double rating, String image_url, String description) {
         this.id = id;
         this.localized_name = localized_name;
         this.name = name;
@@ -39,12 +53,13 @@ public class FilmItemGson {
     }
 
 
+
     /**
      *
      * @return
      * The id
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -53,7 +68,7 @@ public class FilmItemGson {
      * @param id
      * The id
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -98,7 +113,7 @@ public class FilmItemGson {
      * @return
      * The year
      */
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -107,7 +122,7 @@ public class FilmItemGson {
      * @param year
      * The year
      */
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
@@ -116,7 +131,7 @@ public class FilmItemGson {
      * @return
      * The rating
      */
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
@@ -125,7 +140,7 @@ public class FilmItemGson {
      * @param rating
      * The rating
      */
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
