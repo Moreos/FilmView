@@ -12,29 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-<<<<<<< Updated upstream
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-=======
->>>>>>> Stashed changes
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-<<<<<<< Updated upstream
-import static android.content.ContentValues.TAG;
-
-=======
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
->>>>>>> Stashed changes
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, OnItemClick {
     public static final String URL = "http://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json";
@@ -57,21 +44,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-<<<<<<< Updated upstream
-=======
     //TextView textView;
 
 
->>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSwipeRefreshLayout = findViewById(R.id.swipeContainer);
-<<<<<<< Updated upstream
-        setContentView(R.layout.activity_main);
-=======
->>>>>>> Stashed changes
 
         /*
         FCM - потом
@@ -87,6 +67,28 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         activityWeakReference = new WeakReference<>(MainActivity.this);
         mSwipeRefreshLayout = findViewById(R.id.swipeContainer);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+
+        FireMessage f = null;
+        try {
+            f = new FireMessage("MY TITLE", "TEST MESSAGE");
+            //TO SINGLE DEVICE
+    /*  String fireBaseToken="c2N_8u1leLY:APA91bFBNFYDARLWC74QmCwziX-YQ68dKLNRyVjE6_sg3zs-dPQRdl1QU9X6p8SkYNN4Zl7y-yxBX5uU0KEKJlam7t7MiKkPErH39iyiHcgBvazffnm6BsKjRCsKf70DE5tS9rIp_HCk";
+       f.sendToToken(fireBaseToken); */
+
+            // TO MULTIPLE DEVICE
+    /*  JSONArray tokens = new JSONArray();
+      tokens.put("c2N_8u1leLY:APA91bFBNFYDARLWC74QmCwziX-YQ68dKLNRyVjE6_sg3zs-dPQRdl1QU9X6p8SkYNN4Zl7y-yxBX5uU0KEKJlam7t7MiKkPErH39iyiHcgBvazffnm6BsKjRCsKf70DE5tS9rIp_HCk");
+      tokens.put("c2R_8u1leLY:APA91bFBNFYDARLWC74QmCwziX-YQ68dKLNRyVjE6_sg3zs-dPQRdl1QU9X6p8SkYNN4Zl7y-yxBX5uU0KEKJlam7t7MiKkPErH39iyiHcgBvazffnm6BsKjRCsKf70DE5tS9rIp_HCk");
+       f.sendToGroup(tokens);  */
+
+            //TO TOPIC
+            String topic="yourTopicName";
+            f.sendToTopic(topic);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         startRecyler();
 

@@ -33,12 +33,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 
-<<<<<<< Updated upstream
-=======
-    implementation 'com.google.firebase:firebase-core:17.0.1'
-    implementation 'com.google.firebase:firebase-messaging:19.0.1'
-
     implementation 'androidx.cardview:cardview:1.0.0'
 
->>>>>>> Stashed changes
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
