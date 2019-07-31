@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class FireMessage {
-    private final String SERVER_KEY = "AIzaSyBDXBrD-eRlPGTICA_M1LCM8uHY2rZ4T2I";
+    private final String SERVER_KEY = "API KEY";
     private final String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
     private JSONObject root;
 
