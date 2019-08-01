@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         loadImage.setImageResource(R.drawable.circle);
 
-        loadImage.startAnimation(animationShow);
+        //loadImage.startAnimation(animationShow);
         loadImage.startAnimation(animationRotateCenter);
 
         startRecyler();
@@ -116,21 +116,24 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
+        final Animation animationRotateCenter = AnimationUtils.loadAnimation(
+                MainActivity.this, R.anim.rotate_center);
+        loadImage.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
+        loadImage.startAnimation(animationRotateCenter);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Отменяем анимацию обновления
-                final Animation animationRotateCenter = AnimationUtils.loadAnimation(
-                        MainActivity.this, R.anim.rotate_center);
+
 
                 final Animation animationShow = AnimationUtils.loadAnimation(
                         MainActivity.this, R.anim.show_in);
 
-                loadImage.setVisibility(View.VISIBLE);
 
-                loadImage.startAnimation(animationShow);
-                loadImage.startAnimation(animationRotateCenter);
+
+                //loadImage.startAnimation(animationShow);
+
 
                 activityWeakReference = new WeakReference<>(MainActivity.this);
                 mSwipeRefreshLayout.setRefreshing(false);
@@ -153,8 +156,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     final Animation animationHide = AnimationUtils.loadAnimation(
                             MainActivity.this, R.anim.show_out);
 
-                    loadImage.startAnimation(animationHide);
-                    loadImage.setVisibility(View.GONE);
+                    //loadImage.startAnimation(animationHide);
+                    loadImage.clearAnimation();
+                    loadImage.setVisibility(View.INVISIBLE);
                     recyclerView.setVisibility(View.VISIBLE);
 
                     Collections.sort(films, FilmItemGson.yearRatingCompare);
@@ -186,6 +190,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(@NonNull Call<FilmsItems> call, @NonNull Throwable t) {
+                loadImage.clearAnimation();
+                loadImage.setVisibility(View.INVISIBLE);
                 Toast.makeText(getApplicationContext(),
                         "Ошибка с подключением. \nПовторите попытку позже или проверьте подключение.",
                         Toast.LENGTH_SHORT).show();
