@@ -1,9 +1,14 @@
 package com.example.filmview;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,11 +29,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, OnItemClick {
-    public static final String URL = "http://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json";
+    //public static final String URL = "http://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json";
 
     public static final String TAG = "testStart";
 
-    private static final String TAG_FID = "id";
+    //private static final String TAG_FID = "id";
     private static final String TAG_YEAR = "year";
     private static final String TAG_RATING = "rating";
     private static final String TAG_RUNAME = "localized_name";
@@ -44,18 +49,25 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    //TextView textView;
+    private ImageView loadImage;
 
+    private RecyclerView recyclerView;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mSwipeRefreshLayout = findViewById(R.id.swipeContainer);
 
-        /*
-        FCM - потом
-         */
+        recyclerView = findViewById(R.id.list);
+
+        final Animation animationRotateCenter = AnimationUtils.loadAnimation(
+                this, R.anim.rotate_center);
+
+        final Animation animationShow = AnimationUtils.loadAnimation(
+                this, R.anim.show_in);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -68,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mSwipeRefreshLayout = findViewById(R.id.swipeContainer);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        FireMessage f = null;
+        FireMessage f;
         try {
             f = new FireMessage("MY TITLE", "TEST MESSAGE");
             //TO SINGLE DEVICE
@@ -82,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
        f.sendToGroup(tokens);  */
 
             //TO TOPIC
-            String topic="yourTopicName";
+            String topic = "yourTopicName";
             f.sendToTopic(topic);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -90,17 +102,46 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             e.printStackTrace();
         }
 
+//        imageView = findViewById(R.id.animationImage);
+//        imageView.setInAnimation(this, R.drawable.animation_list);
+        //imageView.setAnimation(R.drawable.animation_list);
+        //animation.start()
+
+        loadImage = findViewById(R.id.loadImage);
+
+        loadImage.setImageResource(R.drawable.circle);
+
+        loadImage.startAnimation(animationShow);
+        loadImage.startAnimation(animationRotateCenter);
+
+        //loadImage.startAnimation(animationRotateCenter);
+        //loadAnimation();
+
         startRecyler();
+
+        //onRefresh().;
 
         showAllFilms();
     }
 
     @Override
     public void onRefresh() {
+        recyclerView.setVisibility(View.INVISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Отменяем анимацию обновления
+                final Animation animationRotateCenter = AnimationUtils.loadAnimation(
+                        MainActivity.this, R.anim.rotate_center);
+
+                final Animation animationShow = AnimationUtils.loadAnimation(
+                        MainActivity.this, R.anim.show_in);
+
+                loadImage.setVisibility(View.VISIBLE);
+
+                loadImage.startAnimation(animationShow);
+                loadImage.startAnimation(animationRotateCenter);
+
                 activityWeakReference = new WeakReference<>(MainActivity.this);
                 mSwipeRefreshLayout.setRefreshing(false);
                 filmsItemsYears.clear();
@@ -118,6 +159,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onResponse(@NonNull Call<FilmsItems> call, @NonNull Response<FilmsItems> response) {
                 if (response.body() != null) {
                     films.addAll(response.body().getFilms());
+
+                    final Animation animationHide = AnimationUtils.loadAnimation(
+                            MainActivity.this, R.anim.show_out);
+
+                    loadImage.startAnimation(animationHide);
+                    loadImage.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
 
                     Collections.sort(films, FilmItemGson.yearRatingCompare);
                     filmsItemsYears.addAll(films);
@@ -167,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             Log.d(TAG, "proshlo");
         }
     }
-    
+
     @Override
     public void onClick(FilmItemGson filmItemGson) {
         Intent intent = new Intent(getApplicationContext(), FilmActivity.class);
