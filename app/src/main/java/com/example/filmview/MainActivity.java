@@ -102,11 +102,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             e.printStackTrace();
         }
 
-//        imageView = findViewById(R.id.animationImage);
-//        imageView.setInAnimation(this, R.drawable.animation_list);
-        //imageView.setAnimation(R.drawable.animation_list);
-        //animation.start()
-
         loadImage = findViewById(R.id.loadImage);
 
         loadImage.setImageResource(R.drawable.circle);
@@ -114,12 +109,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         loadImage.startAnimation(animationShow);
         loadImage.startAnimation(animationRotateCenter);
 
-        //loadImage.startAnimation(animationRotateCenter);
-        //loadAnimation();
-
         startRecyler();
-
-        //onRefresh().;
 
         showAllFilms();
     }
